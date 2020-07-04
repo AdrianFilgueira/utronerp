@@ -5,7 +5,7 @@ session_start();
 <html lang="pt-br">
 	<head>
 		<meta charset="utf-8">
-		<title>CRUD - Cadastrar</title>		
+		<title>Cadastrar</title>		
 	</head>
 	<body>
 		<h1>Cadastrar Usuário</h1>
@@ -16,11 +16,17 @@ session_start();
 		}
 		?>
 		<form method="POST" action="cadlogin.php">
-			<label>Login: </label>
-			<input type="text" name="usuario" placeholder="Digite seu login"><br><br>
+			<label>Nome: </label>
+			<input type="text" name="nome" placeholder="Digite seu nome"><br><br>
 			
+			<label>Login: </label>
+			<input type="text" name="usuario" placeholder="Digite seu usuário"><br><br>
+						
 			<label>Senha: </label>
 			<input type="password" name="senha" placeholder="Digite sua senha"><br><br>
+
+			<label>Permissão: </label>
+			<input type="text" name="permissao" placeholder="Digite o número de sua permissão"><br><br>
 			
 			<input type="submit" value="Cadastrar">
 		</form>
