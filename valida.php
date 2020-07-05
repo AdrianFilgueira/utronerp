@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once("conexao.php");
-include_once("permissao.php");
+$permissaofinal;
 $btnLogin = filter_input(INPUT_POST, 'btnLogin', FILTER_SANITIZE_STRING);
 if($btnLogin){
 	$usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
@@ -12,10 +12,34 @@ if($btnLogin){
 		//Gerar a senha criptografa
 		//echo password_hash($senha, PASSWORD_DEFAULT);
 		//Pesquisar o usuário no BD
-		$result_usuario = "SELECT id_login, nome, usuario, senha FROM login WHERE usuario='$usuario' LIMIT 1";
+		$result_usuario = "SELECT id_login, nome, usuario, senha, permissao FROM login WHERE usuario='$usuario' LIMIT 1";
 		$resultado_usuario = mysqli_query($con, $result_usuario);
 		if($resultado_usuario){
 			$row_usuario = mysqli_fetch_assoc($resultado_usuario);
+			switch ((int)$row_usuario['permissao']){
+			    case 1:
+			        $permissaofinal = "Administração do Sistema";
+			        break;
+			    case 2:
+			        $permissaofinal = "Gerenciamento";
+			        break;
+			    case 3:
+			        $permissaofinal = "Administrativo";
+			        break;
+			    case 4:
+			        $permissaofinal = "Gerenciamento de Producao";
+			        break;
+			    case 5:
+			        $permissaofinal = "Producao";
+			        break;
+			    case 6:
+			        $permissaofinal = "Envio";
+			        break;
+			    case 7:
+			        $permissaofinal = "Vendas";
+			        break;			        
+
+			}
 			if(password_verify($senha, $row_usuario['senha'])){
 				$_SESSION['id_login'] = $row_usuario['id_login'];
 				$_SESSION['nome'] = $row_usuario['nome'];		
