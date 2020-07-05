@@ -1,12 +1,16 @@
 <?php
 session_start();
 ob_start();
-$btnCadUsuario = filter_input(INPUT_POST, 'btnCadUsuario', FILTER_SANITIZE_STRING);
+$btnCadCli = filter_input(INPUT_POST, 'btnCadCli', FILTER_SANITIZE_STRING);
+$btnCadFor = filter_input(INPUT_POST, 'btnCadFor', FILTER_SANITIZE_STRING);
+$btnCadFun = filter_input(INPUT_POST, 'btnCadFun', FILTER_SANITIZE_STRING);
+$btnCadTran = filter_input(INPUT_POST, 'btnCadTran', FILTER_SANITIZE_STRING);
+$btnCadVen = filter_input(INPUT_POST, 'btnCadVen', FILTER_SANITIZE_STRING);
 
 /*
 Verifica a existência do cadastro levando em consideração o CPF ou CNPJ
 */
-if($btnCadUsuario){
+if($btnCadCli){
 	include_once 'conexao.php';
 	$dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 	print_r($dados_rc);
@@ -14,7 +18,7 @@ if($btnCadUsuario){
 	
 	$dados_st = array_map('strip_tags', $dados_rc);
 	$dados = array_map('trim', $dados_st);
-	
+
 	if(in_array('',$dados)){
 		$erro = true;
 		$_SESSION['msg'] = "Necessário preencher todos os campos";
@@ -48,7 +52,13 @@ if($btnCadUsuario){
 	if(!$erro){
 		//var_dump($dados);
 		$dados['senha'] = password_hash($dados['senha'], PASSWORD_DEFAULT);
-		
+		/*
+INSERT INTO clientes(nome, fantasia, cep, estado, cidade, bairro, rua, numero, telefone, celular, email, pfpj, cpfcnpj, ierg, situacao, sexo, datanasc, obs, emailcob, limitecred, datacad) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19],[value-20],[value-21])
+
+
+INSERT INTO fornecedores(nome, fantasia, cep, estado, cidade, bairro, rua, numero, telefone, celular, email, pfpj, cpfcnpj, ierg, situacao, site, obs, emailcob, limitecred, datacad) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19],[value-20])
+
+*/	
 		$result_usuario = "INSERT INTO usuarios (nome, email, usuario, senha) VALUES (
 						'" .$dados['nome']. "',
 						'" .$dados['email']. "',

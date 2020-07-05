@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cadastrar</title>
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/signin.css" rel="stylesheet">
+		<link href="css/tema.css" rel="stylesheet">
+
+ <!-- Adicionando Javascript -->
+        <script
+      type="text/javascript"
+      src="js/consultas.js">
+    </script>
+
+	</head>
+	<body>
+		<div class="container">
+			<div class="form-signin">
+				<h2>Cadastrar Transportadoras</h2>
+
+<!--------------------------------------------------------------------------------------------------------------------------------->
+				<h1><?php
+					if(isset($_SESSION['msg'])){
+						echo $_SESSION['msg'];
+						unset($_SESSION['msg']);
+					}
+					?></h1>
+				<form method="POST" action="cadastrar.php" class="row">
+				  <div class="form-row">
+				    <div class="form-group col-md-6">
+						<label>Nome</label>
+						<input type="text" name="nome" placeholder="Digite o nome e sobrenome" class="form-control">
+				    </div>
+				    <div class="form-group col-md-6">
+						<label>Fantasia</label>
+						<input type="text" name="fantasia" placeholder="Digite o nome fantasia" class="form-control">	
+				    </div>
+				  </div>
+				  <div class="form-row">
+				    <div class="form-group col-md-2">
+						<label>CEP</label>
+						<input type="text" name="cep" placeholder="Digite o CEP" class="form-control">
+				    </div>
+				    <div class="form-group col-md-3">
+  						<label>Estado</label>
+						<input type="text" name="estado" placeholder="Digite o estado" class="form-control">
+				    </div>
+				    <div class="form-group col-md-3">
+						<label>Cidade</label>
+						<input type="text" name="cidade" placeholder="Digite a cidade" class="form-control">
+				    </div> 
+				    <div class="form-group col-md-4">
+						<label>Bairro</label>
+						<input type="text" name="bairro" placeholder="Digite o bairro" class="form-control">
+				    </div> 
+				    <div class="form-group col-md-5">
+						<label>Rua</label>
+						<input type="text" name="rua" placeholder="Digite a rua" class="form-control">
+				    </div> 
+				    <div class="form-group col-md-1">
+						<label>Número</label>
+						<input type="text" name="numero" placeholder="Digite o número" class="form-control">
+				    </div> 
+				    <div class="form-group col-md-2">
+						<label>Telefone</label>
+						<input type="text" name="telefone" placeholder="Digite o telefone" class="form-control">
+				    </div>
+				    <div class="form-group col-md-2">
+						<label>Celular</label>
+						<input type="text" name="celular" placeholder="Digite o celular" class="form-control">
+				    </div>
+				    <div class="form-group col-md-2">
+					    <label>Tipo de pessoa</label>
+					    <select type="text" name="tipopessoa" class="form-control">
+					      <option>Pessoa Física</option>
+					      <option>Pessoa Jurídica</option>
+					    </select>
+				    </div>
+				    <div class="form-group col-md-3">
+					    <label>Situação</label>
+					    <select type="text" name="sitacao" class="form-control">
+					      <option>Ativo</option>
+					      <option>Inativo</option>
+					    </select>
+				    </div>
+				    <div class="form-group col-md-2">
+						<label>CPF ou CNPJ</label>
+						<input type="text" name="cpfcnpj" placeholder="Digite o CPF ou CNPJ" class="form-control">
+				    </div>
+				    <div class="form-group col-md-2">
+						<label>IE ou RG</label>
+						<input type="text" name="ierg" placeholder="Digite o RG ou IE" class="form-control">
+				    </div>
+				    <div class="form-group col-md-3">
+						<label>E-Mail</label>
+						<input type="email" name="email" placeholder="Digite o E-Mail" class="form-control">
+				    </div>
+				    <div class="form-group col-md-2">
+						<label>Limite de crédito</label>
+						<input type="text" name="limitecred" placeholder="Limite de crédito" class="form-control">
+				    </div>
+				    <div class="form-group col-md-3">
+						<label>E-Mail de cobrança</label>
+						<input type="email" name="emailcob" placeholder="Digite o E-Mail de cobrança" class="form-control">
+				    </div>
+					</div>
+				    <div class="form-group col-md-7">
+					    <label for="exampleFormControlTextarea1">Obs</label>
+					    <textarea type="text" name="obs" placeholder="Digite observação sobre o cadastro" class="form-control" rows="4"></textarea>
+				    </div>
+				    <div class="form-group col-md-4">
+			   			<!---->				    	
+				    </div>
+				 	<div class="form-group col-md-3">
+<!--------------------------------------------------------------------------------------------------------------------------------->
+						<input type="submit" name="btnCadTran" value="Cadastrar" class="btn btn-success"><br><br>
+						Lembrou? <a href="login.php">Clique aqui</a> para logar					
+					</div>	
+
+				</form>				
+			</div>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
