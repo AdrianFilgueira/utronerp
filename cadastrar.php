@@ -59,6 +59,8 @@ INSERT INTO clientes(nome, fantasia, cep, estado, cidade, bairro, rua, numero, t
 
 INSERT INTO fornecedores(nome, fantasia, cep, estado, cidade, bairro, rua, numero, telefone, celular, email, pfpj, cpfcnpj, ierg, situacao, site, obs, emailcob, limitecred, datacad) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19],[value-20])
 
+
+INSERT INTO produtos(descricao, unidade, ncm, origem, precoc, precov, ipi, situacao, estoquemin, estoquemax, fornecedor, bloco, upcean, peso, medidas, obs, material, tipo, datacad) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19])
 */	
 		$result_usuario = "INSERT INTO usuarios (nome, email, usuario, senha) VALUES (
 						'" .$dados['nome']. "',
