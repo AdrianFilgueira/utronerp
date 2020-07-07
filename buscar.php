@@ -16,10 +16,9 @@
     <thead>
       <tr>
         <th>ID Pedido</th>
-        <th>ID Cliente</th>
+        <th>Cliente</th>
         <th>ID Vendedor</th>
         <th>Andamento</th>
-        <th>Tempo de Produção</th>
       </tr>
     </thead>
     <tbody>
@@ -27,18 +26,17 @@
 	include_once 'conexao.php';
 	$saida = "";
 	$query = "SELECT * FROM pedidos ORDER by id_pedido";
-	$q = 1;
-	$query = "SELECT * FROM pedidos WHERE andamento LIKE '%".$q."%' OR id_pedido LIKE '%".$q."%'";
-	$resultado = $con->query($query);
+	$q = ;
+	$query = "SELECT id_pedido, vendedores.nomeven, clientes.nomecli, andamento FROM pedidos, clientes, vendedores WHERE pedidos.id_cliente = clientes.id_cliente AND pedidos.id_vendedor = vendedores.id_vendedor AND (clientes.nomecli LIKE '%".$q."%' OR vendedores.nomeven LIKE '%".$q."%')";
+  $resultado = $con->query($query);
 
 	if ($resultado -> num_rows > 0) {
 		while ($fila = $resultado->fetch_assoc()) {
 			$saida.= "	    <tr>
 						      <th scope=\"row\">".$fila['id_pedido']."</th>
-						      <td>".$fila['id_cliente']."</td>
-						      <td>".$fila['id_vendedor']."</td>
+						      <td>".$fila['nomecli']."</td>
+						      <td>".$fila['nomeven']."</td>
 						      <td>".$fila['andamento']."</td>
-						      <td>".$fila['tempoprodh']."</td>
 						    </tr>";
 		}
 		$saida.= "</tbody></table>";
