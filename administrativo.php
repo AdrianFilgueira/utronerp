@@ -3,18 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Login</title>
-		<link href="css/bootstrap.css" rel="stylesheet">
-		<link href="css/signin.css" rel="stylesheet">
-		<link href="css/tema.css" rel="stylesheet">
-
- <!-- Adicionando Javascript -->
-        <script type="text/javascript"src="js/consultas.js"></script>
-    	<script type="text/javascript"src="js/main.js"></script>
-		
 	</head>
 	<body>
 		<div class="container">
-			<div class="form-signin"align="center" >
+			<div class="form-signin" align="center" >
 				<h2>Consulta de vendas</h2>
 				<br>
 				<h3><?php
@@ -32,7 +24,7 @@
 					  echo "<br>";
 					  echo "<br>";
 						require_once 'buscar.php';
-												echo "<br>";
+						echo "<br>";
 						echo "<a href='sair.php'>Sair</a>";
   						?>
 

@@ -24,3 +24,4 @@ $(document).on('keyup', '#btnpesquisapedidos', function(){
 		buscapedidos();
 	}
 })
+
