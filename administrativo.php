@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="form-signin" align="center" >
+			<div class="form-signin-heading" align="center" >
 				<h2>Consulta de vendas</h2>
 				<br>
 				<h3><?php

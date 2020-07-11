@@ -18,8 +18,8 @@ session_start();
 		
 	</head>
 	<body>
-		<div class="container">
-			<div class="form-signin">
+		<div class="container"">
+			<div class="form-signin-heading">
 				<h2>Cadastrar Usuário</h2>
 
 <!--------------------------------------------------------------------------------------------------------------------------------->

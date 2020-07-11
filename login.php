@@ -17,9 +17,9 @@ session_start();
     </script>
 		
 	</head>
-	<body style="padding: 10%;">
+	<body style="padding: 10%; text-align: center;">
 		<div class="container">
-			<div class="form-signin"align="center" style="max-width: 500px">
+			<div class="form-signin-heading"align="center" style="max-width: 500px">
 				<h2>Área restrita</h2>
 
 <!--------------------------------------------------------------------------------------------------------------------------------->
