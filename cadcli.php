@@ -11,18 +11,19 @@
 						unset($_SESSION['msg']);
 					}
 					?></h1>
+
 				<form method="POST" action="cadastrar.php" class="needs-validation" novalidate>
 				  <div class="form-row">
 				    <div class="form-group col-md-6">
 						<label>Nome</label>
-						<input type="text" name="nome" placeholder="Digite o nome e sobrenome" class="form-control" required>
+						<input type="text" id="nome" name="nome" placeholder="Digite o nome e sobrenome" class="form-control" onkeypress="salva_dados(this,1);" value="" required>
 			                <div class="invalid-feedback">
 			                  É necessário preencher o Nome.
 			                </div>
 				    </div>
 				    <div class="form-group col-md-4">
 						<label>Fantasia</label>
-						<input type="text" name="fantasia" placeholder="Digite o nome fantasia" class="form-control">	
+						<input type="text" id="fantasia" name="fantasia" placeholder="Digite o nome fantasia" class="form-control">	
 				    </div>
 <!---------------------------------------------------------------------------------------------->			  	
 				    <div class="form-group col-md-2">
@@ -51,7 +52,7 @@
 <!---------------------------------------------------------------------------------------------->
 				    <div class="form-group col-md-1">
 						<label>Número</label>
-						<input type="text" name="numero" placeholder="Nº" class="form-control"required>
+						<input type="text" id="numero" name="numero" placeholder="Nº" class="form-control"required>
 			                <div class="invalid-feedback">
 			                  Preencha o Número.
 			                </div>
@@ -62,25 +63,25 @@
 				    </div> 
 				    <div class="form-group col-md-2">
 						<label>Telefone</label>
-						<input type="text" name="telefone" placeholder="Digite o telefone" class="form-control" onkeypress="formatar_mascara(this,'## ####-####')" >
+						<input type="text" id="telefone"name="telefone" placeholder="Digite o telefone" class="form-control" onkeypress="formatar_mascara(this,'## ####-####');" >
 				    </div>
 				    <div class="form-group col-md-2">
 						<label>Celular</label>
-						<input type="text" name="celular" placeholder="Digite o celular" class="form-control" onkeypress="formatar_mascara(this,'## # ####-####')" required>
+						<input type="text" id="celular" name="celular" placeholder="Digite o celular" class="form-control" onkeypress="formatar_mascara(this,'## # ####-####');" required>
 			                <div class="invalid-feedback">
 			                  É necessário preencher o Celular.
 			                </div>
 				    </div>
 				    <div class="form-group col-md-2">
 					    <label>Tipo de pessoa</label>
-					    <select type="text" name="tipopessoa" class="custom-select d-block w-100" onmouseleave="document.getElementById('cpfcnpj').value='';document.getElementById('ierg').value='';" required>
+					    <select type="text" id="tipopessoa" name="tipopessoa" class="custom-select d-block w-100" onmouseleave="document.getElementById('cpfcnpj').value='';document.getElementById('ierg').value='';" required>
 					      <option>Pessoa Física</option>
 					      <option>Pessoa Jurídica</option>
 					    </select>
 				    </div>
 				    <div class="form-group col-md-2">
 					    <label>Situação</label>
-					    <select type="text" name="sitacao" class="custom-select d-block w-100" required>
+					    <select type="text" id="sitacao" name="sitacao" class="custom-select d-block w-100" required>
 					      <option>Ativo</option>
 					      <option>Inativo</option>
 					    </select>
@@ -98,14 +99,14 @@
 				    </div>
 				    <div class="form-group col-md-2">
 					    <label>Sexo</label>
-					    <select type="text" name="sexo" class="custom-select d-block w-100">
+					    <select type="text" id="sexo" name="sexo" class="custom-select d-block w-100">
 					      <option>Masculino</option>
 					      <option>Feminino</option>
 					    </select>
 				    </div>
 				    <div class="form-group col-md-2">
 						<label>Data de Nascimento</label>
-						<input type="date" name="datanasc" placeholder="Digite a data de nascimento" class="form-control">
+						<input type="date" id="datanasc"name="datanasc" placeholder="Digite a data de nascimento" class="form-control">
 				    </div>
 				    <div class="form-group col-md-3">
 						<label>E-Mail</label>
@@ -116,17 +117,17 @@
 				    </div>
 				    <div class="form-group col-md-3">
 						<label>E-Mail de cobrança</label>
-						<input type="email" name="emailcob" placeholder="Em branco se for igual o E-Mail" class="form-control">
+						<input type="email" id="emailcob"name="emailcob" placeholder="Em branco se for igual o E-Mail" class="form-control">
 				    </div>
 				    <div class="form-group col-md-2">
 						<label>Limite de crédito</label>
-						<input type=number step=0.01 name="limitecred" placeholder="Limite de crédito" class="form-control">
+						<input type=number step=0.01 id="limitecred"name="limitecred" placeholder="Limite de crédito" class="form-control">
 				    </div>
 					</div>
 					<center>
 				    <div class="form-group col-md-10">
 					    <label>Obs</label>
-					    <textarea type="text" name="obs" placeholder="Digite observação sobre o cadastro" class="form-control" rows="4"></textarea>
+					    <textarea type="text" id="obs"name="obs" placeholder="Digite observação sobre o cadastro" class="form-control" rows="4"></textarea>
 				    </div>
 					</center>
 				 	<div class="center">

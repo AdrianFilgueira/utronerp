@@ -2,16 +2,17 @@
 session_start();
 ob_start();
 $btnCadCli = filter_input(INPUT_POST, 'btnCadCli', FILTER_SANITIZE_STRING);
+$btnCadVen = filter_input(INPUT_POST, 'btnCadVen', FILTER_SANITIZE_STRING);
+$btnCadTra = filter_input(INPUT_POST, 'btnCadTra', FILTER_SANITIZE_STRING);
 $btnCadFor = filter_input(INPUT_POST, 'btnCadFor', FILTER_SANITIZE_STRING);
 $btnCadFun = filter_input(INPUT_POST, 'btnCadFun', FILTER_SANITIZE_STRING);
-$btnCadTra = filter_input(INPUT_POST, 'btnCadTra', FILTER_SANITIZE_STRING);
-$btnCadVen = filter_input(INPUT_POST, 'btnCadVen', FILTER_SANITIZE_STRING);
 $btnCadLog = filter_input(INPUT_POST, 'btnCadLog', FILTER_SANITIZE_STRING);
+
 $btnCadPed = filter_input(INPUT_POST, 'btnCadPed', FILTER_SANITIZE_STRING);
 
 /*
-Verifica a existência do cadastro levando em consideração o CPF ou CNPJ
-*/
+	Verifica a existência do cadastro levando em consideração o CPF ou CNPJ
+
 if($btnTest){
 	include_once 'conexao.php';
 	$dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -48,7 +49,7 @@ if($btnTest){
 
 	/*
 	Se não nouver nenhum erro ou cadastro já feito faz o cadastro
-	*/
+
 	
 	//var_dump($dados);
 	if(!$erro){
@@ -59,7 +60,7 @@ if($btnTest){
 
 
 			INSERT INTO produtos(descricao, unidade, ncm, origem, precoc, precov, ipi, situacao, estoquemin, estoquemax, fornecedor, bloco, upcean, peso, medidas, obs, material, tipo, datacad) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19])
-		*/	
+
 		$result_usuario = "INSERT INTO usuarios (nome, email, usuario, senha) VALUES (
 						'" .$dados['nome']. "',
 						'" .$dados['email']. "',
@@ -75,7 +76,7 @@ if($btnTest){
 		}
 	}
 }
-
+*/
 
 if ($btnCadCli) {
 	include_once("conexao.php");
@@ -87,28 +88,37 @@ if ($btnCadCli) {
 	$dados = array_map('trim', $dados_st);
 	if ($dados['tipopessoa'] = "Pessoa Física")
 		$dados['tipopessoa'] = '1';
+	else	
+		$dados['tipopessoa'] = '0';
 	if ($dados['situacao'] = "Ativo")
 		$dados['situacao'] = '1';
+	else	
+		$dados['situacao'] = '0';
 	if ($dados['sexo'] = "Masculino")
 		$dados['sexo'] = '1';
+	else	
+		$dados['sexo'] = '0';
 	if(in_array('',$dados)){
 		if (!$erro) {
 			$senha = password_hash($senha, PASSWORD_DEFAULT);
-			$result_usuario = "INSERT INTO clientes(nomecli, fantasiacli, cepcli, estadocli, cidadecli, bairrocli, ruacli, numerocli, telefonecli, celularcli, emailcli, pfcli, cpfcnpjcli, iergcli, situacaocli, sexocli, datanasccli, obscli, emailcobcli, limitecredcli) VALUES (
+			/*INSERT INTO clientes(nomecli, fantasiacli, cepcli, ufcli, cidadecli, bairrocli, ruacli, numerocli, complementocli, telefonecli, celularcli, emailcli, pfcli, cpfcnpjcli, iergcli, situacaocli, sexocli, datanasccli, obscli, emailcobcli, limitecredcli) VALUES 
+			([2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14],[15],[16],[17],[18],[19],[20],[21],[22])*/
+			$result_usuario = "INSERT INTO clientes(nomecli, fantasiacli, cepcli, ufcli, cidadecli, bairrocli, ruacli, numerocli, complementocli, telefonecli, celularcli, emailcli, pfcli, cpfcnpjcli, iergcli, situacaocli, sexocli, datanasccli, obscli, emailcobcli, limitecredcli) VALUES (
 					'" .utf8_decode($dados['nome']). "',
 					'" .utf8_decode($dados['fantasia']). "',
-					" .$dados['cep']. ",
+					" .str_replace('-', '', $dados['cep']). ",
 					'" .$dados['uf']. "',
 					'" .utf8_decode($dados['cidade']). "',
 					'" .utf8_decode($dados['bairro']). "',
 					'" .utf8_decode($dados['rua']). "',
 					" .$dados['numero']. ",
-					" .$dados['telefone']. ",
-					" .$dados['celular']. ",
+					'" .utf8_decode($dados['complemento']). "',
+					" .str_replace('-', '', str_replace(' ', '', $dados['telefone'])). ",
+					" .str_replace('-', '', str_replace(' ', '', $dados['celular'])). ",
 					'" .$dados['email']. "',
 					" .$dados['tipopessoa']. ",
-					'" .$dados['cpfcnpj']. "',
-					'" .$dados['ierg']. "',
+					'" .str_replace('-', '', str_replace('.', '', str_replace('/', '', $dados['cpfcnpj']))). "',
+					'" .str_replace('-', '', str_replace('.', '', $dados['ierg'])). "',
 					" .$dados['situacao']. ",
 					" .$dados['sexo']. ",
 					'" .$dados['datanasc']. "',
@@ -121,12 +131,11 @@ if ($btnCadCli) {
 
 			if(mysqli_insert_id($con)){
 				$_SESSION['msg'] = "<p style='color:green;'>Usuário cadastrado com sucesso</p>";
-				header("Location: login.php");
+				header("Location: cadcli.php");
 			}else{
-				$_SESSION['msg'] = "<p style='color:red;'>Usuário não foi cadastrado com sucesso</p>";
-
-				header("Location: index.php");
-
+				$_SESSION['msg'] = $result_usuario;
+				//$_SESSION['msg'] = "<p style='color:red;'>Usuário não foi cadastrado com sucesso</p>";
+				header("Location: cadcli.php");
 			}	
 		}
 	}
