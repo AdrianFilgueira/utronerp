@@ -16,7 +16,7 @@
 $permissao = filter_input(INPUT_POST, 'permissao', FILTER_SANITIZE_STRING);
     if(!empty($_SESSION['permissao'])){
       include_once 'conexao.php';
-      if (condition) {
+      if ($_SESSION['permissao'] == "Administração do Sistema" || $_SESSION['permissao'] == "Administrativo" || $_SESSION['permissao'] == "Gerenciamento") {
         $saida = "";
         $query = "SELECT * FROM pedidos ORDER by id_pedido";
         $q = "";
@@ -37,10 +37,11 @@ $permissao = filter_input(INPUT_POST, 'permissao', FILTER_SANITIZE_STRING);
         else{
           $saida.= "Não há dados";
         }
-      }
-
+              
       echo $saida;
       $con -> close();
+      }
+
     }
     else{
       $_SESSION['msg'] = "Área restrita";
@@ -64,9 +65,3 @@ $permissao = filter_input(INPUT_POST, 'permissao', FILTER_SANITIZE_STRING);
           });
     });
     </script>
-    <?php
-    //require_once 'cadfun.html';
-    ?>
-<?php 
-  include_once('footer.php');
-?> 

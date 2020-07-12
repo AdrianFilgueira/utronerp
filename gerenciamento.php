@@ -1,8 +1,8 @@
 <?php
-	$titulo = "Administração";
+	$titulo = "Gerenciamento";
 	require_once 'header.php';
 ?>
-				<h2>Consulta de vendas</h2>
+				<h2>Cadastrar e consultar produtos</h2>
 				<br>
 				<h3><?php
 					if(!empty($_SESSION['nome'])){
@@ -13,10 +13,6 @@
 					}
 				?></h3>
 
-				<div>
-				 	<?php
-						require_once 'buscar.php';
-					?>
 
 				</div>	
 <?php 

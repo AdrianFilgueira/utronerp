@@ -1,5 +1,6 @@
 <?php 
-include_once('header.php');
+  $titulo = "Logins";
+  include_once('header.php');
 ?>
 
   <form method="POST" action="valida.php" class="form-signin" >
@@ -11,7 +12,7 @@ include_once('header.php');
         }
         ?></h1>
         
-    <h1 class="h3 mb-3 font-weight-normal">ERP - Login</h1>
+    <h1 class="h3 mb-3 font-weight-normal">Bem-Vindo</h1>
     <input type="text" name="usuario" class="form-control" placeholder="Login" style="text-align: center;" value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" required autofocus>
     <br>
     <input type="password" name="senha" class="form-control" placeholder="Senha" style="text-align: center;" required>

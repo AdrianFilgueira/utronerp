@@ -34,10 +34,10 @@ if($btnLogin){
 			        $permissaofinal = "Administrativo";
 			        break;
 			    case 4:
-			        $permissaofinal = "Gerenciamento de Producao";
+			        $permissaofinal = "Gerenciamento de Produção";
 			        break;
 			    case 5:
-			        $permissaofinal = "Producao";
+			        $permissaofinal = "Produção";
 			        break;
 			    case 6:
 			        $permissaofinal = "Envio";
@@ -49,7 +49,7 @@ if($btnLogin){
 			}
 			if(password_verify($senha, $row_usuario['senha'])){
 				$_SESSION['id_login'] = $row_usuario['id_login'];
-				$_SESSION['nome'] = $row_usuario['nome'];		
+				$_SESSION['nome'] = utf8_encode($row_usuario['nome']);		
 				$_SESSION['permissao'] = $permissaofinal;		
 				$_SESSION['usuario'] = $row_usuario['usuario'];
 				$_SESSION['senha'] = $row_usuario['senha'];

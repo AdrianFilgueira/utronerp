@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Adrian">
@@ -12,7 +12,10 @@
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
     <link href="css/navbar.css" rel="stylesheet">
-    <title>ERP - Sistema de gerenciamento</title>
+    <script type="text/javascript"src="js/consultas.js"></script>
+    <script type="text/javascript"src="js/mascaras.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <title>ERP - <?php echo $titulo ?></title>
   </head>
 
   <body class="text-center">
@@ -23,7 +26,7 @@ session_start();
 if(!empty($_SESSION['nome'])){
             echo "
     <nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\">
-      <a class=\"navbar-brand\" href=\"#\">
+      <a class=\"navbar-brand\" href=\"index.php\">
         <img src=\"images/icon.ico\" width=\"30\" height=\"30\" alt=\"\">
       </a>
       <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarCollapse\" aria-controls=\"navbarCollapse\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
@@ -41,11 +44,14 @@ if(!empty($_SESSION['nome'])){
             <a class=\"nav-link disabled\" href=\"#\">Disabled</a>
           </li>
             <li class=\"nav-item dropdown\">
-            <a class=\"nav-link dropdown-toggle\" href=\"http://example.com\" id=\"dropdown03\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown</a>
+            <a class=\"nav-link dropdown-toggle\" href=\"http://example.com\" id=\"dropdown03\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">Cadastros</a>
             <div class=\"dropdown-menu\" aria-labelledby=\"dropdown03\">
-              <a class=\"dropdown-item\" href=\"#\">Action</a>
-              <a class=\"dropdown-item\" href=\"#\">Another action</a>
-              <a class=\"dropdown-item\" href=\"#\">Something else here</a>
+              <a class=\"dropdown-item\" href=\"http://localhost/utronerp/cadcli.php\">Clientes</a>
+              <a class=\"dropdown-item\" href=\"http://localhost/utronerp/cadven.php\">Vendedores</a>
+              <a class=\"dropdown-item\" href=\"http://localhost/utronerp/cadtran.php\">Transportadoras</a>
+              <a class=\"dropdown-item\" href=\"http://localhost/utronerp/cadfor.php\">Fornecedores</a>
+              <a class=\"dropdown-item\" href=\"http://localhost/utronerp/cadfun.php\">Funcionários</a>
+              <a class=\"dropdown-item\" href=\"http://localhost/utronerp/cadlogin.php\">Login</a>
             </div>
           </li>
         </ul>
