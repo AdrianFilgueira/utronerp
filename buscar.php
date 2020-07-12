@@ -1,16 +1,7 @@
+<?php
+  require_once 'header.php';
+?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Sua Página</title>
-		<link href="css/bootstrap.css" rel="stylesheet">
-		<link href="css/signin.css" rel="stylesheet">
-    <link href="css/jquery.dataTables.min.css" rel="stylesheet">
-
-</head>
-<body>
-  
   <table class="table table-fordered table-hover" id="minhaTabela" style="text-align: center;">
     <thead>
       <tr>
@@ -22,27 +13,30 @@
     </thead>
     <tbody>
 <?php
+$permissao = filter_input(INPUT_POST, 'permissao', FILTER_SANITIZE_STRING);
     if(!empty($_SESSION['permissao'])){
       include_once 'conexao.php';
-      $saida = "";
-      $query = "SELECT * FROM pedidos ORDER by id_pedido";
-      $q = "";
-      $query = "SELECT id_pedido, vendedores.nomeven, clientes.nomecli, andamento FROM pedidos, clientes, vendedores WHERE pedidos.id_cliente = clientes.id_cliente AND pedidos.id_vendedor = vendedores.id_vendedor AND (clientes.nomecli LIKE '%".$q."%' OR vendedores.nomeven LIKE '%".$q."%')";
-      $resultado = $con->query($query);
+      if (condition) {
+        $saida = "";
+        $query = "SELECT * FROM pedidos ORDER by id_pedido";
+        $q = "";
+        $query = "SELECT id_pedido, vendedores.nomeven, clientes.nomecli, andamento FROM pedidos, clientes, vendedores WHERE pedidos.id_cliente = clientes.id_cliente AND pedidos.id_vendedor = vendedores.id_vendedor AND (clientes.nomecli LIKE '%".$q."%' OR vendedores.nomeven LIKE '%".$q."%')";
+        $resultado = $con->query($query);
 
-      if ($resultado -> num_rows > 0) {
-        while ($fila = $resultado->fetch_assoc()) {
-          $saida.= "      <tr>
-                      <th style=\"text-align: center;\" scope=\"row\">".$fila['id_pedido']."</th>
-                      <td style=\"text-align: center;\">".$fila['nomecli']."</td>
-                      <td style=\"text-align: center;\">".$fila['nomeven']."</td>
-                      <td style=\"text-align: center;\">".$fila['andamento']."</td>
-                    </tr>";
+        if ($resultado -> num_rows > 0) {
+          while ($fila = $resultado->fetch_assoc()) {
+            $saida.= "      <tr>
+                        <th style=\"text-align: center;\" scope=\"row\">".$fila['id_pedido']."</th>
+                        <td style=\"text-align: center;\">".$fila['nomecli']."</td>
+                        <td style=\"text-align: center;\">".$fila['nomeven']."</td>
+                        <td style=\"text-align: center;\">".$fila['andamento']."</td>
+                      </tr>";
+          }
+          $saida.= "</tbody></table>";
         }
-        $saida.= "</tbody></table>";
-      }
-      else{
-        $saida.= "Não há dados";
+        else{
+          $saida.= "Não há dados";
+        }
       }
 
       echo $saida;
@@ -50,7 +44,7 @@
     }
     else{
       $_SESSION['msg'] = "Área restrita";
-      header("Location: login.php");  
+      header("Location: index.php");  
     }
 	  ?>
     
@@ -73,5 +67,6 @@
     <?php
     //require_once 'cadfun.html';
     ?>
-</body>
-</html>
+<?php 
+  include_once('footer.php');
+?> 

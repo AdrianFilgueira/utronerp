@@ -4,6 +4,13 @@ include_once("conexao.php");
 $permissaofinal;
 $btnLogin = filter_input(INPUT_POST, 'btnLogin', FILTER_SANITIZE_STRING);
 if($btnLogin){
+	if(!empty($_POST["remember"])) {
+				setcookie ("member_login",$_POST["usuario"],time()+ (10 * 365 * 24 * 60 * 60));
+			} else {
+				if(isset($_COOKIE["member_login"])) {
+					setcookie ("member_login","");
+				}
+			}
 	$usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
 	$senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
 	//echo "$usuario - $senha";
@@ -52,14 +59,14 @@ if($btnLogin){
 				echo $senha;
 				echo $row_usuario['senha'];
 				$_SESSION['msg'] = "Login e senha incorreto!";
-				header("Location: login.php");
+				header("Location: index.php");
 			}
 		}
 	}else{
 		$_SESSION['msg'] = "Login e senha incorreto!";
-		header("Location: login.php");
+		header("Location: index.php");
 	}
 }else{
 	$_SESSION['msg'] = "Página não encontrada";
-	header("Location: login.php");
+	header("Location: index.php");
 }
