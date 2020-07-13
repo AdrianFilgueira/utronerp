@@ -26,7 +26,7 @@
 				    </div>
 				    <div class="form-group col-md-2">
 					    <label>Tipo de pessoa</label>
-					    <select type="text" name="tipopessoa" class="custom-select d-block w-100" onmouseleave="document.getElementById('cpfcnpj').value='';document.getElementById('ierg').value='';" required>
+					    <select type="text" name="tipopessoa" class="custom-select d-block w-100" onmouseup="document.getElementById('cpfcnpj').value='';document.getElementById('ierg').value='';" required>
 					      <option>Pessoa Física</option>
 					      <option>Pessoa Jurídica</option>
 					    </select>

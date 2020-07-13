@@ -14,7 +14,9 @@
     <link href="css/navbar.css" rel="stylesheet">
     <script type="text/javascript"src="js/consultas.js"></script>
     <script type="text/javascript"src="js/mascaras.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/javascriptpersonalizado.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <title>ERP - <?php echo $titulo ?></title>
   </head>
 
@@ -25,7 +27,7 @@
 session_start();
 if(!empty($_SESSION['nome'])){
             echo "
-    <nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\">
+    <nav class=\"navbar navbar-expand-md navbar-dark fixed-top bg-dark\"style=\"padding-top: = 5%;\">
       <a class=\"navbar-brand\" href=\"index.php\">
         <img src=\"images/icon.ico\" width=\"30\" height=\"30\" alt=\"\">
       </a>

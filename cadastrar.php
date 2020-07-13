@@ -10,78 +10,10 @@ $btnCadLog = filter_input(INPUT_POST, 'btnCadLog', FILTER_SANITIZE_STRING);
 
 $btnCadPed = filter_input(INPUT_POST, 'btnCadPed', FILTER_SANITIZE_STRING);
 
-/*
-	Verifica a existência do cadastro levando em consideração o CPF ou CNPJ
-
-if($btnTest){
-	include_once 'conexao.php';
-	$dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-	print_r($dados_rc);
-	$erro = false;
-	
-	$dados_st = array_map('strip_tags', $dados_rc);
-	$dados = array_map('trim', $dados_st);
-
-	if(in_array('',$dados)){
-		$erro = true;
-		$_SESSION['msg'] = "Necessário preencher todos os campos";
-	}elseif((strlen($dados['senha'])) < 6){
-		$erro = true;
-		$_SESSION['msg'] = "A senha deve ter no minímo 6 caracteres";
-	}elseif(stristr($dados['senha'], "'")) {
-		$erro = true;
-		$_SESSION['msg'] = "Caracter ( ' ) utilizado na senha é inválido";
-	}else{
-		$result_usuario = "SELECT id FROM usuarios WHERE usuario='". $dados['usuario'] ."'";
-		$resultado_usuario = mysqli_query($con, $result_usuario);
-		if(($resultado_usuario) AND ($resultado_usuario->num_rows != 0)){
-			$erro = true;
-			$_SESSION['msg'] = "Este usuário já está sendo utilizado";
-		}
-		
-		$result_usuario = "SELECT id FROM usuarios WHERE email='". $dados['email'] ."'";
-		$resultado_usuario = mysqli_query($con, $result_usuario);
-		if(($resultado_usuario) AND ($resultado_usuario->num_rows != 0)){
-			$erro = true;
-			$_SESSION['msg'] = "Este e-mail já está cadastrado";
-		}
-	}
-
-	/*
-	Se não nouver nenhum erro ou cadastro já feito faz o cadastro
-
-	
-	//var_dump($dados);
-	if(!$erro){
-		//var_dump($dados);
-		$dados['senha'] = password_hash($dados['senha'], PASSWORD_DEFAULT);
-		/*
-			INSERT INTO fornecedores(nome, fantasia, cep, estado, cidade, bairro, rua, numero, telefone, celular, email, pfpj, cpfcnpj, ierg, situacao, site, obs, emailcob, limitecred, datacad) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19],[value-20])
-
-
-			INSERT INTO produtos(descricao, unidade, ncm, origem, precoc, precov, ipi, situacao, estoquemin, estoquemax, fornecedor, bloco, upcean, peso, medidas, obs, material, tipo, datacad) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19])
-
-		$result_usuario = "INSERT INTO usuarios (nome, email, usuario, senha) VALUES (
-						'" .$dados['nome']. "',
-						'" .$dados['email']. "',
-						'" .$dados['usuario']. "',
-						'" .$dados['senha']. "'
-						)";
-		$resultado_usario = mysqli_query($con, $result_usuario);
-		if(mysqli_insert_id($con)){
-			$_SESSION['msgcad'] = "Usuário cadastrado com sucesso";
-			header("Location: login.php");
-		}else{
-			$_SESSION['msg'] = "Erro ao cadastrar o usuário";
-		}
-	}
-}
-*/
 
 if ($btnCadCli) {
 	include_once("conexao.php");
 	$dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-	print_r($dados_rc);
 	$erro = false;
 
 	$dados_st = array_map('strip_tags', $dados_rc);
@@ -98,109 +30,322 @@ if ($btnCadCli) {
 		$dados['sexo'] = '1';
 	else	
 		$dados['sexo'] = '0';
-	if(in_array('',$dados)){
-		if (!$erro) {
-			$senha = password_hash($senha, PASSWORD_DEFAULT);
-			/*INSERT INTO clientes(nomecli, fantasiacli, cepcli, ufcli, cidadecli, bairrocli, ruacli, numerocli, complementocli, telefonecli, celularcli, emailcli, pfcli, cpfcnpjcli, iergcli, situacaocli, sexocli, datanasccli, obscli, emailcobcli, limitecredcli) VALUES 
-			([2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14],[15],[16],[17],[18],[19],[20],[21],[22])*/
-			$result_usuario = "INSERT INTO clientes(nomecli, fantasiacli, cepcli, ufcli, cidadecli, bairrocli, ruacli, numerocli, complementocli, telefonecli, celularcli, emailcli, pfcli, cpfcnpjcli, iergcli, situacaocli, sexocli, datanasccli, obscli, emailcobcli, limitecredcli) VALUES (
-					'" .utf8_decode($dados['nome']). "',
-					'" .utf8_decode($dados['fantasia']). "',
-					" .str_replace('-', '', $dados['cep']). ",
-					'" .$dados['uf']. "',
-					'" .utf8_decode($dados['cidade']). "',
-					'" .utf8_decode($dados['bairro']). "',
-					'" .utf8_decode($dados['rua']). "',
-					" .$dados['numero']. ",
-					'" .utf8_decode($dados['complemento']). "',
-					" .str_replace('-', '', str_replace(' ', '', $dados['telefone'])). ",
-					" .str_replace('-', '', str_replace(' ', '', $dados['celular'])). ",
-					'" .$dados['email']. "',
-					" .$dados['tipopessoa']. ",
-					'" .str_replace('-', '', str_replace('.', '', str_replace('/', '', $dados['cpfcnpj']))). "',
-					'" .str_replace('-', '', str_replace('.', '', $dados['ierg'])). "',
-					" .$dados['situacao']. ",
-					" .$dados['sexo']. ",
-					'" .$dados['datanasc']. "',
-					'" .utf8_decode($dados['obs']). "',
-					'" .$dados['emailcob']. "',
-					" .$dados['limitecred']. "
-					)";
-					
-			$resultado_usuario = mysqli_query($con, $result_usuario);
+	if (!$erro) {
+		$senha = password_hash($senha, PASSWORD_DEFAULT);
+		$result_usuario = "INSERT INTO clientes(nomecli, fantasiacli, cepcli, ufcli, cidadecli, bairrocli, ruacli, numerocli, complementocli, telefonecli, celularcli, emailcli, pfcli, cpfcnpjcli, iergcli, situacaocli, sexocli, datanasccli, obscli, emailcobcli, limitecredcli) VALUES (
+				'" .utf8_decode($dados['nome']). "',
+				'" .utf8_decode($dados['fantasia']). "',
+				" .str_replace('-', '', $dados['cep']). ",
+				'" .$dados['uf']. "',
+				'" .utf8_decode($dados['cidade']). "',
+				'" .utf8_decode($dados['bairro']). "',
+				'" .utf8_decode($dados['rua']). "',
+				" .$dados['numero']. ",
+				'" .utf8_decode($dados['complemento']). "',
+				" .str_replace('-', '', str_replace(' ', '', $dados['telefone'])). ",
+				" .str_replace('-', '', str_replace(' ', '', $dados['celular'])). ",
+				'" .$dados['email']. "',
+				" .$dados['tipopessoa']. ",
+				" .str_replace('-', '', str_replace('.', '', str_replace('/', '', $dados['cpfcnpj']))). ",
+				'" .str_replace('-', '', str_replace('.', '', $dados['ierg'])). "',
+				" .$dados['situacao']. ",
+				" .$dados['sexo']. ",
+				'" .$dados['datanasc']. "',
+				'" .utf8_decode($dados['obs']). "',
+				'" .$dados['emailcob']. "',
+				" .$dados['limitecred']. "
+				)";
+				
+		$resultado_usuario = mysqli_query($con, $result_usuario);
 
-			if(mysqli_insert_id($con)){
-				$_SESSION['msg'] = "<p style='color:green;'>Usuário cadastrado com sucesso</p>";
-				header("Location: cadcli.php");
-			}else{
-				$_SESSION['msg'] = $result_usuario;
-				//$_SESSION['msg'] = "<p style='color:red;'>Usuário não foi cadastrado com sucesso</p>";
-				header("Location: cadcli.php");
-			}	
-		}
+		if(mysqli_insert_id($con)){
+			$_SESSION['msg'] = "<p style='color:green;'>Cliente cadastrado com sucesso</p>";
+			header("Location: cadcli.php");
+		}else{
+			//$_SESSION['msg'] = $result_usuario;
+			$_SESSION['msg'] = "<p style='color:red;'>Cliente não foi cadastrado com sucesso</p>";
+			header("Location: cadcli.php");
+		}	
 	}
 }
-
-
 
 if ($btnCadVen) {
 	include_once("conexao.php");
 	$dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-	print_r($dados_rc);
 	$erro = false;
 
 	$dados_st = array_map('strip_tags', $dados_rc);
 	$dados = array_map('trim', $dados_st);
 	if ($dados['tipopessoa'] = "Pessoa Física")
 		$dados['tipopessoa'] = '1';
+	else	
+		$dados['tipopessoa'] = '0';
 	if ($dados['situacao'] = "Ativo")
 		$dados['situacao'] = '1';
+	else	
+		$dados['situacao'] = '0';
 	if ($dados['sexo'] = "Masculino")
 		$dados['sexo'] = '1';
-	if(in_array('',$dados)){
-		if (!$erro) {
-			$senha = password_hash($senha, PASSWORD_DEFAULT);
-			$result_usuario = "INSERT INTO vendedores(nomeven, fantasiaven, cepven, estadoven, cidadeven, bairroven, ruaven, numeroven, telefoneven, celularven, emailven, pfven, cpfcnpjven, iergven, situacaoven, sexoven, datanascven, obsven, emailcobven, limitecredven) VALUES (
-					'" .utf8_decode($dados['nome']). "',
-					'" .utf8_decode($dados['fantasia']). "',
-					" .$dados['cep']. ",
-					'" .$dados['uf']. "',
-					'" .utf8_decode($dados['cidade']). "',
-					'" .utf8_decode($dados['bairro']). "',
-					'" .utf8_decode($dados['rua']). "',
-					" .$dados['numero']. ",
-					" .$dados['telefone']. ",
-					" .$dados['celular']. ",
-					'" .$dados['email']. "',
-					" .$dados['tipopessoa']. ",
-					'" .$dados['cpfcnpj']. "',
-					'" .$dados['ierg']. "',
-					" .$dados['situacao']. ",
-					" .$dados['sexo']. ",
-					'" .$dados['datanasc']. "',
-					'" .utf8_decode($dados['obs']). "',
-					'" .$dados['emailcob']. "',
-					" .$dados['limitecred']. "
-					)";
-					
-			$resultado_usuario = mysqli_query($con, $result_usuario);
+	else	
+		$dados['sexo'] = '0';
+	if (!$erro) {
+		$result_usuario = "INSERT INTO vendedores(nomeven, fantasiaven, cepven, ufven, cidadeven, bairroven, ruaven, numeroven, complementoven, telefoneven, celularven, emailven, pfven, cpfcnpjven, iergven, situacaoven, sexoven, datanascven, obsven, emailcobven, limitecredven) VALUES (
+				'" .utf8_decode($dados['nome']). "',
+				'" .utf8_decode($dados['fantasia']). "',
+				" .str_replace('-', '', $dados['cep']). ",
+				'" .$dados['uf']. "',
+				'" .utf8_decode($dados['cidade']). "',
+				'" .utf8_decode($dados['bairro']). "',
+				'" .utf8_decode($dados['rua']). "',
+				" .$dados['numero']. ",
+				'" .utf8_decode($dados['complemento']). "',
+				" .str_replace('-', '', str_replace(' ', '', $dados['telefone'])). ",
+				" .str_replace('-', '', str_replace(' ', '', $dados['celular'])). ",
+				'" .$dados['email']. "',
+				" .$dados['tipopessoa']. ",
+				" .str_replace('-', '', str_replace('.', '', str_replace('/', '', $dados['cpfcnpj']))). ",
+				'" .str_replace('-', '', str_replace('.', '', $dados['ierg'])). "',
+				" .$dados['situacao']. ",
+				" .$dados['sexo']. ",
+				'" .$dados['datanasc']. "',
+				'" .utf8_decode($dados['obs']). "',
+				'" .$dados['emailcob']. "',
+				" .$dados['limitecred']. "
+				)";
+				
+		$resultado_usuario = mysqli_query($con, $result_usuario);
 
-			if(mysqli_insert_id($con)){
-				$_SESSION['msg'] = "<p style='color:green;'>Usuário cadastrado com sucesso</p>";
-				header("Location: login.php");
-			}else{
-				$_SESSION['msg'] = "<p style='color:red;'>Usuário não foi cadastrado com sucesso</p>";
-
-				header("Location: index.php");
-
-			}	
-		}
+		if(mysqli_insert_id($con)){
+			$_SESSION['msg'] = "<p style='color:green;'>Vendedor cadastrado com sucesso</p>";
+			header("Location: cadven.php");
+		}else{
+			//$_SESSION['msg'] = $result_usuario;
+			$_SESSION['msg'] = "<p style='color:red;'>Vendedor não foi cadastrado com sucesso</p>";
+			header("Location: cadven.php");
+		}	
 	}
 }
 
+if ($btnCadTra) {
+	include_once("conexao.php");
+	$dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+	$erro = false;
 
-/*
-if($btnCadClii){
+	$dados_st = array_map('strip_tags', $dados_rc);
+	$dados = array_map('trim', $dados_st);
+	if ($dados['tipopessoa'] = "Pessoa Física")
+		$dados['tipopessoa'] = '1';
+	else	
+		$dados['tipopessoa'] = '0';
+	if ($dados['situacao'] = "Ativo")
+		$dados['situacao'] = '1';
+
+	if (!$erro) {
+		//INSERT INTO transportadoras(nometra, fantasiatra, ceptra, uftra, cidadetra, bairrotra, ruatra, numerotra, complementotra, telefonetra, celulartra, emailtra, pftra, cpfcnpjtra, iergtra, situacaotra, obstra, emailcobtra, limitecredtra) VALUES (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19)
+		$result_usuario = "INSERT INTO transportadoras(nometra, fantasiatra, ceptra, uftra, cidadetra, bairrotra, ruatra, numerotra, complementotra, telefonetra, celulartra, emailtra, pftra, cpfcnpjtra, iergtra, situacaotra, obstra, emailcobtra, limitecredtra) VALUES (
+				'" .utf8_decode($dados['nome']). "',
+				'" .utf8_decode($dados['fantasia']). "',
+				" .str_replace('-', '', $dados['cep']). ",
+				'" .$dados['uf']. "',
+				'" .utf8_decode($dados['cidade']). "',
+				'" .utf8_decode($dados['bairro']). "',
+				'" .utf8_decode($dados['rua']). "',
+				" .$dados['numero']. ",
+				'" .utf8_decode($dados['complemento']). "',
+				" .str_replace('-', '', str_replace(' ', '', $dados['telefone'])). ",
+				" .str_replace('-', '', str_replace(' ', '', $dados['celular'])). ",
+				'" .$dados['email']. "',
+				" .$dados['tipopessoa']. ",
+				" .str_replace('-', '', str_replace('.', '', str_replace('/', '', $dados['cpfcnpj']))). ",
+				'" .str_replace('-', '', str_replace('.', '', $dados['ierg'])). "',
+				" .$dados['situacao']. ",
+				'" .utf8_decode($dados['obs']). "',
+				'" .$dados['emailcob']. "',
+				" .$dados['limitecred']. "
+				)";
+				
+		$resultado_usuario = mysqli_query($con, $result_usuario);
+
+		if(mysqli_insert_id($con)){
+			$_SESSION['msg'] = "<p style='color:green;'>Transportadora cadastrada com sucesso</p>";
+			header("Location: cadtran.php");
+		}else{
+			//$_SESSION['msg'] = $result_usuario;
+			$_SESSION['msg'] = "<p style='color:red;'>Transportadora não foi cadastrada com sucesso</p>";
+			header("Location: cadtran.php");
+		}	
+	}
+}
+
+if ($btnCadFor) {
+	include_once("conexao.php");
+	$dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+	$erro = false;
+
+	$dados_st = array_map('strip_tags', $dados_rc);
+	$dados = array_map('trim', $dados_st);
+	if ($dados['tipopessoa'] = "Pessoa Física")
+		$dados['tipopessoa'] = '1';
+	else	
+		$dados['tipopessoa'] = '0';
+	if ($dados['situacao'] = "Ativo")
+		$dados['situacao'] = '1';
+	else	
+		$dados['situacao'] = '0';
+	if (!$erro) {
+		//INSERT INTO fornecedores(nomefor, fantasiafor, cepfor, uffor, cidadefor, bairrofor, ruafor, numerofor, complementofor, telefonefor, celularfor, emailfor, pffor, cpfcnpjfor, iergfor, situacaofor, sitefor, obsfor, emailcobfor, limitecredfor) VALUES (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
+		$result_usuario = "INSERT INTO fornecedores(nomefor, fantasiafor, cepfor, uffor, cidadefor, bairrofor, ruafor, numerofor, complementofor, telefonefor, celularfor, emailfor, pffor, cpfcnpjfor, iergfor, situacaofor, sitefor, obsfor, emailcobfor, limitecredfor) VALUES (
+				'" .utf8_decode($dados['nome']). "',
+				'" .utf8_decode($dados['fantasia']). "',
+				" .str_replace('-', '', $dados['cep']). ",
+				'" .$dados['uf']. "',
+				'" .utf8_decode($dados['cidade']). "',
+				'" .utf8_decode($dados['bairro']). "',
+				'" .utf8_decode($dados['rua']). "',
+				" .$dados['numero']. ",
+				'" .utf8_decode($dados['complemento']). "',
+				" .str_replace('-', '', str_replace(' ', '', $dados['telefone'])). ",
+				" .str_replace('-', '', str_replace(' ', '', $dados['celular'])). ",
+				'" .$dados['email']. "',
+				" .$dados['tipopessoa']. ",
+				" .str_replace('-', '', str_replace('.', '', str_replace('/', '', $dados['cpfcnpj']))). ",
+				'" .str_replace('-', '', str_replace('.', '', $dados['ierg'])). "',
+				" .$dados['situacao']. ",
+				'" .$dados['site']. "',
+				'" .utf8_decode($dados['obs']). "',
+				'" .$dados['emailcob']. "',
+				" .$dados['limitecred']. "
+				)";
+				
+		$resultado_usuario = mysqli_query($con, $result_usuario);
+
+		if(mysqli_insert_id($con)){
+			$_SESSION['msg'] = "<p style='color:green;'>Fornecedor cadastrado com sucesso</p>";
+			header("Location: cadfor.php");
+		}else{
+			//$_SESSION['msg'] = $result_usuario;
+			$_SESSION['msg'] = "<p style='color:red;'>Fornecedor não foi cadastrado com sucesso</p>";
+			header("Location: cadfor.php");
+		}	
+	}
+}
+
+if ($btnCadFun) {
+	include_once("conexao.php");
+	$dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+	$erro = false;
+
+	$dados_st = array_map('strip_tags', $dados_rc);
+	$dados = array_map('trim', $dados_st);
+	if ($dados['tipopessoa'] = "Pessoa Física")
+		$dados['tipopessoa'] = '1';
+	else	
+		$dados['tipopessoa'] = '0';
+	if ($dados['situacao'] = "Ativo")
+		$dados['situacao'] = '1';
+	else	
+		$dados['situacao'] = '0';
+	if ($dados['sexo'] = "Masculino")
+		$dados['sexo'] = '1';
+	else	
+		$dados['sexo'] = '0';
+	if (!$erro) {
+		//INSERT INTO funcionarios(nomefun, cepfun, uffun, cidadefun, bairrofun, ruafun, numerofun, complementofun, telefonefun, celularfun, emailfun, pffun, cpfcnpjfun, iergfun, situacaofun, sexofun, datanascfun, obsfun, contabancofun, salariofun) VALUES (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
+
+		$result_usuario = "INSERT INTO funcionarios(nomefun, cepfun, uffun, cidadefun, bairrofun, ruafun, numerofun, complementofun, telefonefun, celularfun, emailfun, pffun, cpfcnpjfun, iergfun, situacaofun, sexofun, datanascfun, obsfun, contabancofun, salariofun) VALUES (
+				'" .utf8_decode($dados['nome']). "',
+				" .str_replace('-', '', $dados['cep']). ",
+				'" .$dados['uf']. "',
+				'" .utf8_decode($dados['cidade']). "',
+				'" .utf8_decode($dados['bairro']). "',
+				'" .utf8_decode($dados['rua']). "',
+				" .$dados['numero']. ",
+				'" .utf8_decode($dados['complemento']). "',
+				" .str_replace('-', '', str_replace(' ', '', $dados['telefone'])). ",
+				" .str_replace('-', '', str_replace(' ', '', $dados['celular'])). ",
+				'" .$dados['email']. "',
+				" .$dados['tipopessoa']. ",
+				" .str_replace('-', '', str_replace('.', '', str_replace('/', '', $dados['cpfcnpj']))). ",
+				'" .str_replace('-', '', str_replace('.', '', $dados['ierg'])). "',
+				" .$dados['situacao']. ",
+				" .$dados['sexo']. ",
+				'" .$dados['datanasc']. "',
+				'" .utf8_decode($dados['obs']). "',
+				'" .$dados['contab']. "',
+				" .$dados['salario']. "
+				)";
+				
+		$resultado_usuario = mysqli_query($con, $result_usuario);
+
+		if(mysqli_insert_id($con)){
+			$_SESSION['msg'] = "<p style='color:green;'>Funcionário cadastrado com sucesso</p>";
+			header("Location: cadfun.php");
+		}else{
+			$_SESSION['msg'] = $result_usuario;
+			//$_SESSION['msg'] = "<p style='color:red;'>Funcionário não foi cadastrado com sucesso</p>";
+			header("Location: cadfun.php");
+		}	
+	}
+}
+
+if ($btnCadLog) {
+	include_once("conexao.php");
+	$dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+	$erro = false;
+
+	$dados_st = array_map('strip_tags', $dados_rc);
+	$dados = array_map('trim', $dados_st);
+	if ($dados['tipopessoa'] = "Pessoa Física")
+		$dados['tipopessoa'] = '1';
+	else	
+		$dados['tipopessoa'] = '0';
+	if ($dados['situacao'] = "Ativo")
+		$dados['situacao'] = '1';
+	else	
+		$dados['situacao'] = '0';
+	if ($dados['sexo'] = "Masculino")
+		$dados['sexo'] = '1';
+	else	
+		$dados['sexo'] = '0';
+	if (!$erro) {
+		//INSERT INTO login(nome, usuario, senha, permissao) VALUES (1,2,3,4)
+		$result_usuario = "INSERT INTO login(nome, usuario, senha, permissao) VALUES (
+				'" .utf8_decode($dados['nome']). "',
+				" .str_replace('-', '', $dados['cep']). ",
+				'" .$dados['uf']. "',
+				'" .utf8_decode($dados['cidade']). "',
+				'" .utf8_decode($dados['bairro']). "',
+				'" .utf8_decode($dados['rua']). "',
+				" .$dados['numero']. ",
+				'" .utf8_decode($dados['complemento']). "',
+				" .str_replace('-', '', str_replace(' ', '', $dados['telefone'])). ",
+				" .str_replace('-', '', str_replace(' ', '', $dados['celular'])). ",
+				'" .$dados['email']. "',
+				" .$dados['tipopessoa']. ",
+				" .str_replace('-', '', str_replace('.', '', str_replace('/', '', $dados['cpfcnpj']))). ",
+				'" .str_replace('-', '', str_replace('.', '', $dados['ierg'])). "',
+				" .$dados['situacao']. ",
+				" .$dados['sexo']. ",
+				'" .$dados['datanasc']. "',
+				'" .utf8_decode($dados['obs']). "',
+				'" .$dados['contab']. "',
+				" .$dados['salario']. "
+				)";
+				
+		$resultado_usuario = mysqli_query($con, $result_usuario);
+
+		if(mysqli_insert_id($con)){
+			$_SESSION['msg'] = "<p style='color:green;'>Funcionário cadastrado com sucesso</p>";
+			header("Location: cadfun.php");
+		}else{
+			//_SESSION['msg'] = $result_usuario;
+			$_SESSION['msg'] = "<p style='color:red;'>Funcionário não foi cadastrado com sucesso</p>";
+			header("Location: cadfun.php");
+		}	
+	}
+}
+
+if($btnCadLog){
 	include_once 'conexao.php';
 	$dados_rc = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 	print_r($dados_rc);
@@ -219,54 +364,69 @@ if($btnCadClii){
 		$erro = true;
 		$_SESSION['msg'] = "Caracter ( ' ) utilizado na senha é inválido";
 	}else{
-		$result_usuario = "SELECT id FROM usuarios WHERE usuario='". $dados['usuario'] ."'";
+		$result_usuario = "SELECT id_login FROM login WHERE usuario='". $dados['usuario'] ."'";
 		$resultado_usuario = mysqli_query($con, $result_usuario);
 		if(($resultado_usuario) AND ($resultado_usuario->num_rows != 0)){
 			$erro = true;
 			$_SESSION['msg'] = "Este usuário já está sendo utilizado";
 		}
 		
-		$result_usuario = "SELECT id FROM usuarios WHERE email='". $dados['email'] ."'";
-		$resultado_usuario = mysqli_query($con, $result_usuario);
 		if(($resultado_usuario) AND ($resultado_usuario->num_rows != 0)){
 			$erro = true;
 			$_SESSION['msg'] = "Este e-mail já está cadastrado";
 		}
 	}
+	if ($erro) {
+		header("Location: cadlogin.php");
+	}
 	
-	/*
-	Se não nouver nenhum erro ou cadastro já feito faz o cadastro
-	*/
+	//Se não nouver nenhum erro ou cadastro já feito faz o cadastro
 	
 	//var_dump($dados);
-	/*if(!$erro){
+	if(!$erro){
 		//var_dump($dados);
 		$dados['senha'] = password_hash($dados['senha'], PASSWORD_DEFAULT);
-		/*
-			INSERT INTO clientes(nome, fantasia, cep, estado, cidade, bairro, rua, numero, telefone, celular, email, pfpj, cpfcnpj, ierg, situacao, sexo, datanasc, obs, emailcob, limitecred, datacad) VALUES ('', '', , '', '', '', '', , , , '', , , '', , , data, '', '', );
-
-
-			INSERT INTO fornecedores(nome, fantasia, cep, estado, cidade, bairro, rua, numero, telefone, celular, email, pfpj, cpfcnpj, ierg, situacao, site, obs, emailcob, limitecred, datacad) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19],[value-20])
-
-
-			INSERT INTO produtos(descricao, unidade, ncm, origem, precoc, precov, ipi, situacao, estoquemin, estoquemax, fornecedor, bloco, upcean, peso, medidas, obs, material, tipo, datacad) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14],[value-15],[value-16],[value-17],[value-18],[value-19])
-		*/	
-		/*$result_usuario = "INSERT INTO usuarios (nome, email, usuario, senha) VALUES (
+				switch ($dados['permissao']){
+				    case "Administração do Sistema":
+				        $dados['permissao'] = 1;
+				        break;
+				    case "Gerenciamento":
+				        $dados['permissao'] = 2;
+				        break;
+				    case "Administrativo":
+				        $permissaofinal = 3;
+				        break;
+				    case "Gerenciamento de Produção":
+				        $dados['permissao'] = 4;
+				        break;
+				    case "Produção":
+				        $dados['permissao'] = 5;
+				        break;
+				    case "Envio":
+				        $dados['permissao'] = 6;
+				        break;
+				    case "Vendas":
+				        $dados['permissao'] = 7;
+				        break;
+				    }
+		$result_usuario = "INSERT INTO login(nome, usuario, senha, permissao) VALUES (
 						'" .$dados['nome']. "',
-						'" .$dados['email']. "',
 						'" .$dados['usuario']. "',
-						'" .$dados['senha']. "'
+						'" .$dados['senha']. "',
+						" .$dados['permissao']. "
 						)";
 		$resultado_usario = mysqli_query($con, $result_usuario);
 		if(mysqli_insert_id($con)){
 			$_SESSION['msgcad'] = "Usuário cadastrado com sucesso";
-			header("Location: login.php");
+			header("Location: logoff.php");
 		}else{
-			$_SESSION['msg'] = "Erro ao cadastrar o usuário";
+			$_SESSION['msg'] = $result_usuario;
+			//$_SESSION['msg'] = "Erro ao cadastrar o usuário";
+			header("Location: cadlogin.php");
+
 		}
 	}
 }
 
-*/
 
 ?>

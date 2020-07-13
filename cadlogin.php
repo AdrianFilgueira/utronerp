@@ -14,11 +14,15 @@
 				<form method="POST" action="cadastrar.php" class="needs-validation" novalidate>
 					<center>
 				  <div class="form-col">
+
+
+
+				  	
 				    <div class="form-group col-md-4">
-						<label>Nome</label>
-						<input type="text" name="nome" placeholder="Digite o nome e sobrenome" class="form-control" required>
+						<label>Usuário</label>
+						<input type="text" name="usuario" placeholder="Digite o Usuário" class="form-control" required>
 			                <div class="invalid-feedback">
-			                  É necessário preencher o Nome.
+			                  É necessário preencher o Usuário.
 			                </div>
 				    </div>
 				    <div class="form-group col-md-4">
@@ -50,7 +54,7 @@
 					</center>
 				 	<div class="center">
 			<!--------------------------------------------------------------------------------------------------------------------------------->
-						<input type="submit" name="btnCadFor" value="Cadastrar" class="btn btn-success"><br><br>				
+						<input type="submit" name="btnCadLog" value="Cadastrar" class="btn btn-success"><br><br>				
 					</div>	
 				</form>		
 				</div>	

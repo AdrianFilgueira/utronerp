@@ -20,12 +20,8 @@
 			                  É necessário preencher o Nome.
 			                </div>
 				    </div>
-				    <div class="form-group col-md-4">
-						<label>Fantasia</label>
-						<input type="text" name="fantasia" placeholder="Digite o nome fantasia" class="form-control">	
-				    </div>
 <!---------------------------------------------------------------------------------------------->			  	
-				    <div class="form-group col-md-2">
+				    <div class="form-group col-md-3">
 						<label>CEP</label>
 				        <input name="cep" type="text" id="cep" onblur="pesquisacep(this.value);" placeholder="Digite o CEP" class="form-control" onkeypress="formatar_mascara(this,'#####-###')" required>
 			                <div class="invalid-feedback">
@@ -44,7 +40,7 @@
 						<label>Bairro</label>
 				        <input name="bairro" type="text" id="bairro" placeholder="Digite o bairro" class="form-control">
 				    </div> 
-				    <div class="form-group col-md-3">
+				    <div class="form-group col-md-4">
 						<label>Rua</label>
 				        <input name="rua" type="text" id="rua" placeholder="Digite a rua" class="form-control">
 				    </div> 
@@ -73,7 +69,7 @@
 				    </div>
 				    <div class="form-group col-md-2">
 					    <label>Tipo de pessoa</label>
-					    <select type="text" name="tipopessoa" class="custom-select d-block w-100" onmouseleave="document.getElementById('cpfcnpj').value='';document.getElementById('ierg').value='';" required>
+					    <select type="text" name="tipopessoa" class="custom-select d-block w-100" onmouseup="document.getElementById('cpfcnpj').value='';document.getElementById('ierg').value='';" required>
 					      <option>Pessoa Física</option>
 					      <option>Pessoa Jurídica</option>
 					    </select>
@@ -119,8 +115,8 @@
 						<input type="text" name="contab" placeholder="Conta bancária do funcionário" class="form-control">
 				    </div>
 				    <div class="form-group col-md-2">
-						<label>Limite de crédito</label>
-						<input type=number step=0.01 name="limitecred" placeholder="Limite de crédito" class="form-control">
+						<label>Salário</label>
+						<input type=number step=0.01 name="salario" placeholder="Salário do Funcionário" class="form-control">
 				    </div>
 					</div>
 					<center>
@@ -131,7 +127,7 @@
 					</center>
 				 	<div class="center">
 <!--------------------------------------------------------------------------------------------------------------------------------->
-						<input type="submit" name="btnCadFor" value="Cadastrar" class="btn btn-success"><br><br>				
+						<input type="submit" name="btnCadFun" value="Cadastrar" class="btn btn-success"><br><br>				
 					</div>	
 				</form>		
 				</div>	
