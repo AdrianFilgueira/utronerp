@@ -70,8 +70,13 @@
           });
     });
     </script>
+<<<<<<< Updated upstream
     <?php
     //require_once 'cadfun.html';
     ?>
 </body>
 </html>
+=======
+
+    
+>>>>>>> Stashed changes
