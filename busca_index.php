@@ -2,22 +2,8 @@
 	$titulo = "Consulta Login";
 	require_once 'header.php';
 ?>
-<ul class="nav nav-tabs" id="myTab" role="tablist" style="position: fixed;top: 6%;left: 0%; right: 0px; background-color: #1e72b8;">
-  <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home1" role="tab" aria-controls="home" aria-selected="true" style="color: black;">Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" style="color: black;">Profile</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false" style="color: black;">Contact</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home1" role="tabpanel" aria-labelledby="home-tab">
-
 <html>
-  	<head>
+	<head>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 	</head>
 	<body class="text-center">
@@ -30,12 +16,6 @@
 		<ul class="resultado">
 		
 		</ul>
-
-	</div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><?php include 'buscar.php'; ?></div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-
-
 		<div style="padding-top: 200%;">
 		<table id="example" class="table table-striped table-bordered" style="width:100%; background-color: white;">
         <thead>
@@ -517,11 +497,7 @@
             </tr>
         </tfoot>
     </table>
-</div>
-
-  </div>
-
-</div>
+    	</div>
 <?php 
   include_once('footer.php');
 ?> 

@@ -16,7 +16,7 @@
 				  <div class="form-row">
 				    <div class="form-group col-md-6">
 						<label>Nome</label>
-						<input type="text" id="nome" name="nome" placeholder="Digite o nome e sobrenome" class="form-control" required>
+						<input type="text" id="nome" name="nome" placeholder="Digite o nome e sobrenome" class="form-control" onkeypress="salva_dados(this,1);" value="" required>
 			                <div class="invalid-feedback">
 			                  É necessário preencher o Nome.
 			                </div>

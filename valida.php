@@ -4,6 +4,13 @@ include_once("conexao.php");
 $permissaofinal;
 $btnLogin = filter_input(INPUT_POST, 'btnLogin', FILTER_SANITIZE_STRING);
 if($btnLogin){
+	if(!empty($_POST["remember"])) {
+				setcookie ("member_login",$_POST["usuario"],time()+ (10 * 365 * 24 * 60 * 60));
+			} else {
+				if(isset($_COOKIE["member_login"])) {
+					setcookie ("member_login","");
+				}
+			}
 	$usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
 	$senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
 	//echo "$usuario - $senha";
@@ -27,10 +34,10 @@ if($btnLogin){
 			        $permissaofinal = "Administrativo";
 			        break;
 			    case 4:
-			        $permissaofinal = "Gerenciamento de Producao";
+			        $permissaofinal = "Gerenciamento de Produção";
 			        break;
 			    case 5:
-			        $permissaofinal = "Producao";
+			        $permissaofinal = "Produção";
 			        break;
 			    case 6:
 			        $permissaofinal = "Envio";
@@ -42,7 +49,7 @@ if($btnLogin){
 			}
 			if(password_verify($senha, $row_usuario['senha'])){
 				$_SESSION['id_login'] = $row_usuario['id_login'];
-				$_SESSION['nome'] = $row_usuario['nome'];		
+				$_SESSION['nome'] = utf8_encode($row_usuario['nome']);		
 				$_SESSION['permissao'] = $permissaofinal;		
 				$_SESSION['usuario'] = $row_usuario['usuario'];
 				$_SESSION['senha'] = $row_usuario['senha'];
@@ -52,14 +59,14 @@ if($btnLogin){
 				echo $senha;
 				echo $row_usuario['senha'];
 				$_SESSION['msg'] = "Login e senha incorreto!";
-				header("Location: login.php");
+				header("Location: index.php");
 			}
 		}
 	}else{
 		$_SESSION['msg'] = "Login e senha incorreto!";
-		header("Location: login.php");
+		header("Location: index.php");
 	}
 }else{
 	$_SESSION['msg'] = "Página não encontrada";
-	header("Location: login.php");
+	header("Location: index.php");
 }

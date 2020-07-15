@@ -14,11 +14,7 @@
     <link href="css/navbar.css" rel="stylesheet">
     <script type="text/javascript"src="js/consultas.js"></script>
     <script type="text/javascript"src="js/mascaras.js"></script>
-    <!--
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
-  -->
     <script type="text/javascript" src="js/javascriptpersonalizado.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <title>ERP - <?php echo $titulo ?></title>
@@ -62,6 +58,7 @@ if(!empty($_SESSION['nome'])){
           </li>
         </ul>
         <font color=\"white\" > ".$_SESSION['nome']."&nbsp|&nbsp".$_SESSION['permissao']."&nbsp&nbsp</font>
+
         <form class=\"form-inline mt-2 mt-md-0\" action=\"logoff.php\">
           <button class=\"btn btn-outline-danger my-2 my-sm-0\" type=\"submit\">Sair</button>
         </form>
@@ -77,3 +74,4 @@ if(!empty($_SESSION['nome'])){
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="js/vendor/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
