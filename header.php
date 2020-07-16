@@ -14,15 +14,12 @@
     <link href="css/navbar.css" rel="stylesheet">
     <script type="text/javascript"src="js/consultas.js"></script>
     <script type="text/javascript"src="js/mascaras.js"></script>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/javascriptpersonalizado.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <title>ERP - <?php echo $titulo ?></title>
   </head>
 
-  <body class="text-center">
-    <div class="container">
-          
+ 
 <?php
 session_start();
 if(!empty($_SESSION['nome'])){
@@ -53,6 +50,7 @@ if(!empty($_SESSION['nome'])){
               <a class=\"dropdown-item\" href=\"http://localhost/utronerp/cadtran.php\">Transportadoras</a>
               <a class=\"dropdown-item\" href=\"http://localhost/utronerp/cadfor.php\">Fornecedores</a>
               <a class=\"dropdown-item\" href=\"http://localhost/utronerp/cadfun.php\">Funcionários</a>
+              <div class=\"dropdown-divider\"></div>
               <a class=\"dropdown-item\" href=\"http://localhost/utronerp/cadlogin.php\">Login</a>
             </div>
           </li>
@@ -65,8 +63,12 @@ if(!empty($_SESSION['nome'])){
       </div>
     </nav>";
           }
+
   
 ?>
+ <body class="text-center">
+    <div class="container" style="width: 80%;height: 80%;">
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

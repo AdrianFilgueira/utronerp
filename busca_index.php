@@ -16,7 +16,7 @@
 		<ul class="resultado">
 		
 		</ul>
-		<div style="padding-top: 200%;">
+		<div>
 		<table id="example" class="table table-striped table-bordered" style="width:100%; background-color: white;">
         <thead>
             <tr>
